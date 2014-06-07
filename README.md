@@ -1,4 +1,4 @@
 Woody
 =====
 
-second project for Django. in the way of developing with Victor.
+Second project for Django. Being developed by Victor.
