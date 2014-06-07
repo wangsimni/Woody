@@ -7,7 +7,8 @@
 		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 		<script type="text/javascript" src="restaurant.js"></script>
-		<script type="text/javascript" src="Victor.js"></script>
+		<script type="text/javascript" src="Victor.js"></script>  
+		<script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=c4efb4b86ab8c86994412a047ccc00d0"></script>
 	</head>
 	<body>
 		<!-- 홈 페이지 -->
@@ -25,32 +26,79 @@
 				<p>
 					결정을 했다면 버튼을 눌러주세요
 				</p>
-				<a href="#secondpage" data-role="button" data-transition="pop" id="thebutton">결정!</a>
+				<a href="#second page" data-role="button" id="thebutton">결정!</a>
 
 			</div><!-- /content -->
 
 			<div data-role="footer">
 				<h4>이 페이지의 푸터 부분입니다.</h4>
 			</div><!-- /footer -->
-		</div><!-- /page -->
+		</div><!-- 홈페이지 끝 -->
 
 		<!-- 결정 페이지 -->
-		<div data-role="page" id="secondpage">
+		<div data-role="page" id="second page">
 			<div data-role="header">
 				<a data-rel="back">뒤로</a>
-				<h1>식당 이름</h1>
+				<h1>결과</h1>
 			</div><!-- /header -->
 			<div data-role="content" id="thething">
 
-				<a data-role="button">메뉴 보기</a>
-				<a data-role="button">가는 법</a>
+				<a href="#menu page" data-role="button" id="menu button">메뉴 보기</a>
+				<a href="#map page" data-role="button" id="map button">가는 법</a>
 
 			</div><!-- /content -->
 
 			<div data-role="footer">
 				<h4>이 페이지의 푸터 부분입니다.</h4>
 			</div><!-- /footer -->
-		</div><!-- /page -->
+		</div><!-- 결정 페이지 끝 -->
 
+		<!-- 로딩 페이지 -->
+		<!--
+		<div data-role="page" id="loading page">
+		<meta http-equiv="REFRESH" content="3; url=#secondpage">
+		<div data-role="content" align="center">
+		<p> 잠시만 기다려 주세요</p>
+		<img src="ajax-loader.gif">
+		</div>
+		</div> -->
+		<!-- 로딩 페이지 끝 -->
+		
+		<!-- 메뉴 페이지 -->
+		<div data-role="page" id="menu page">
+			<div data-role="header" id="menu header">
+				<a data-rel="back">뒤로</a>
+				<h1>식당 이름</h1>
+			</div><!-- /header -->
+			<div data-role="content">
+				<table data-role="table" data-mode="reflow">
+					<thead>
+						<tr>
+							<th>식단</th>
+							<th>가격</th>
+						</tr>
+					</thead>
+					<tbody id="menu board"></tbody>
+				</table>
+			</div><!-- /content -->
+
+			<div data-role="footer">
+				<h4>이 페이지의 푸터 부분입니다.</h4>
+			</div><!-- /footer -->
+		</div><!-- 메뉴 페이지 끝 -->
+		
+		<!-- 지도 페이지 -->
+		<div data-role="page" id="map page">
+			<div data-role="header">
+				<a data-rel="back">뒤로</a>
+				<h1>가는 길</h1>
+			</div><!-- /header -->
+			<div data-role="content" id="map" style="border:1px solid #000;">
+			</div><!-- /content -->
+
+			<div data-role="footer">
+				<h4>이 페이지의 푸터 부분입니다.</h4>
+			</div><!-- /footer -->
+		</div><!-- 지도 페이지 끝 -->
 	</body>
 </html>
