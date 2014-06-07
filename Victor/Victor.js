@@ -11,7 +11,7 @@ function AddFrontZero(inValue, digits) {
 
 
 $(document).ready(function() {
-	$("#thebutton").click(function() {
+	$("#selectionbutton").click(function() {
 		var i;
 		if ($("#flip-1").val() == "on") {// 학식 추가
 			var num = Math.floor(Math.random() * 145) + 1;
@@ -82,33 +82,49 @@ $(document).ready(function() {
 				i = 6;
 			//알촌
 		}
-		$(".selected").remove();
 		// 뒤로가기를 눌렀다가 다시 오는 경우를 대비해서.
-		$("#thething").prepend("<h1 class='selected' style='text-align:center'>" + restaurant[i].name + "</h1>");
+		$("#menuandmap > .selected").remove();
+		
+		$("#menuandmap").prepend("<h1 class='selected' style='text-align:center'>" + restaurant[i].name + "</h1>");
 	});
 
-	$("#menu button").click(function() {
-		for ( i = 0; i < 13; i++) {
+	$("#menubutton").click(function() {
+		var i;
+		for (i = 0; i < 13; i++) {
 			if (restaurant[i].name == $(".selected").html()) {
-				$("#menu header").append("<h1>" + restaurant[i].name + "</h1>");
-				if (i >= 6)
-					$("#menu board").append("<p>" + "학식이 아닌 경우에는 메뉴보기를 지원하지 않습니다." + "</p>");
-				else {
 
+				// 뒤로가기를 눌렀다가 다시 오는 경우를 대비해서.
+				$("#menuheader > .selected").remove();
+				$("#menuboard > .selected").remove();
+				
+				$("#menuheader").append("<h1 class='selected ui-title' style='text-align:center'>" + restaurant[i].name + "</h1>");
+				if (!restaurant[i].isCafet) {
+					$("#menuboard").append("<p class='selected ui-title' style='text-align:center'>" + "학식이 아닌 경우에는 메뉴보기를 지원하지 않습니다." + "</p>");
+				}
+				else {
 					var date = new Date();
-					var url = "http://www.hanyang.ac.kr/upmu/sikdan/xml/rest";
 					// 해당 학식에 맞는 xml주소 저장. Date, Day함수들을 사용한다.
 					// 그리고 xml파일의 주소는 항상 월요일 기준이므로 date.getDate() - (date.getDay() - 1)%7를 쓴다.
-					if (i < 4)
-						url = url + "010" + (i + 1) + "_" + AddFrontZero(date.getFullYear(), 4) + "-" + AddFrontZero(date.getMonth() + 1, 2) + "-" + AddFrontZero(date.getDate() - (date.getDay() - 1) % 7, 2) + ".xml";
 					
-else if (i == 4)
-						url = url + "0106_" + AddFrontZero(date.getFullYear(), 4) + "-" + AddFrontZero(date.getMonth() + 1, 2) + "-" + AddFrontZero(date.getDate() - (date.getDay() - 1) % 7, 2) + ".xml";
-					
-else if (i == 5)
-						url = url + "0108_" + AddFrontZero(date.getFullYear(), 4) + "-" + AddFrontZero(date.getMonth() + 1, 2) + "-" + AddFrontZero(date.getDate() - (date.getDay() - 1) % 7, 2) + ".xml";
+					var monday = AddFrontZero(date.getFullYear(), 4) + "-" + AddFrontZero(date.getMonth() + 1, 2) + "-" + AddFrontZero(date.getDate() - (date.getDay() - 1) % 7, 2);
+					var today = AddFrontZero(date.getFullYear(), 4) + "-" + AddFrontZero(date.getMonth() + 1, 2) + "-" + AddFrontZero(date.getDate(), 2);
+					var url = "http://www.hanyang.ac.kr/upmu/sikdan/xml/rest";
 
+					if (i < 4) {
+						alert(i);
+						url = url + "010" + (i + 1) + "_" + monday + ".xml";
+					}
+					else if (i == 4) {
+						alert(i);
+						url = url + "0106_" + monday + ".xml";
+					}
+					else if (i == 5) {
+						alert(i);
+						url = url + "0108_" + monday + ".xml";
+					}
+					
 					alert(url);
+					
 					urlYQL = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D'" + encodeURIComponent(url) + "'&diagnostics=false";
 
 					$.ajax({
@@ -116,12 +132,13 @@ else if (i == 5)
 						url : urlYQL,
 						datatype : "xml",
 						success : function(data, textStatus) {
+							$("#menuboard > .selected").remove();
 							$("menuInfo", data).each(function() {
-								name = $("menu_name", this).text();
-								price = $("menu_price", this).text();
-								console.log(name);
-								console.log(price);
-								$("#menu board").append("<tr>" + "<td>" + name + "</td>" + "<td>" + price + "</td>" + "</tr>");
+								if($("date", this).text() == today) {
+									name = $("menu_name", this).text();
+									price = $("menu_price", this).text();	
+									$("#menuboard").append("<tr class='selected'>" + "<td>" + name + "</td>" + "<td>" + price + "</td>" + "</tr>");
+								}
 							});
 						}
 					});
@@ -131,7 +148,7 @@ else if (i == 5)
 		}
 	});
 
-	$("#map button").click(function() {
+	$("#mapbutton").click(function() {
 		var x, y;
 		for ( i = 0; i < 13; i++) {
 			if (restaurant[i].name == $(".selected").html()) {
@@ -139,7 +156,7 @@ else if (i == 5)
 				y = restaurant[i].y;
 			}
 		}
-		
+
 		var oPoint = new nhn.api.map.LatLng(y, x);
 		nhn.api.map.setDefaultPoint('TM128');
 		oMap = new nhn.api.map.Map('map', {

@@ -8,7 +8,6 @@
 		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 		<script type="text/javascript" src="restaurant.js"></script>
 		<script type="text/javascript" src="Victor.js"></script>  
-		<script type="text/javascript" src="http://openapi.map.naver.com/openapi/naverMap.naver?ver=2.0&key=c4efb4b86ab8c86994412a047ccc00d0"></script>
 	</head>
 	<body>
 		<!-- 홈 페이지 -->
@@ -26,7 +25,7 @@
 				<p>
 					결정을 했다면 버튼을 눌러주세요
 				</p>
-				<a href="#second page" data-role="button" id="thebutton">결정!</a>
+				<a href="#secondpage" data-role="button" id="selectionbutton">결정!</a>
 
 			</div><!-- /content -->
 
@@ -36,15 +35,15 @@
 		</div><!-- 홈페이지 끝 -->
 
 		<!-- 결정 페이지 -->
-		<div data-role="page" id="second page">
+		<div data-role="page" id="secondpage">
 			<div data-role="header">
 				<a data-rel="back">뒤로</a>
 				<h1>결과</h1>
 			</div><!-- /header -->
-			<div data-role="content" id="thething">
+			<div data-role="content" id="menuandmap">
 
-				<a href="#menu page" data-role="button" id="menu button">메뉴 보기</a>
-				<a href="#map page" data-role="button" id="map button">가는 법</a>
+				<a href="#menupage" data-role="button" id="menubutton">메뉴 보기</a>
+				<a href="#mappage" data-role="button" id="mapbutton">가는 법</a>
 
 			</div><!-- /content -->
 
@@ -63,12 +62,11 @@
 		</div>
 		</div> -->
 		<!-- 로딩 페이지 끝 -->
-		
+
 		<!-- 메뉴 페이지 -->
-		<div data-role="page" id="menu page">
-			<div data-role="header" id="menu header">
+		<div data-role="page" id="menupage">
+			<div data-role="header" id="menuheader">
 				<a data-rel="back">뒤로</a>
-				<h1>식당 이름</h1>
 			</div><!-- /header -->
 			<div data-role="content">
 				<table data-role="table" data-mode="reflow">
@@ -78,7 +76,7 @@
 							<th>가격</th>
 						</tr>
 					</thead>
-					<tbody id="menu board"></tbody>
+					<tbody id="menuboard"></tbody>
 				</table>
 			</div><!-- /content -->
 
@@ -86,9 +84,9 @@
 				<h4>이 페이지의 푸터 부분입니다.</h4>
 			</div><!-- /footer -->
 		</div><!-- 메뉴 페이지 끝 -->
-		
+
 		<!-- 지도 페이지 -->
-		<div data-role="page" id="map page">
+		<div data-role="page" id="mappage">
 			<div data-role="header">
 				<a data-rel="back">뒤로</a>
 				<h1>가는 길</h1>
