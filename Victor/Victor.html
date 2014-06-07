@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<title>Victor Project - What to eat for lunch?</title>
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
+		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
+		<script type="text/javascript" src="restaurant.js"></script>
+		<script type="text/javascript" src="Victor.js"></script>
+	</head>
+	<body>
+		<!-- 홈 페이지 -->
+		<div data-role="page" id="home">
+			<div data-role="header">
+				<h1>오늘은 뭐 먹을까?</h1>
+			</div><!-- /header -->
+			<div data-role="content">
+
+				학식은
+				<select name="flip-1" id="flip-1" data-role="slider">
+					<option value="off">제외</option>
+					<option value="on">추가</option>
+				</select>
+				<p>
+					결정을 했다면 버튼을 눌러주세요
+				</p>
+				<a href="#secondpage" data-role="button" data-transition="pop" id="thebutton">결정!</a>
+
+			</div><!-- /content -->
+
+			<div data-role="footer">
+				<h4>이 페이지의 푸터 부분입니다.</h4>
+			</div><!-- /footer -->
+		</div><!-- /page -->
+
+		<!-- 결정 페이지 -->
+		<div data-role="page" id="secondpage">
+			<div data-role="header">
+				<a data-rel="back">뒤로</a>
+				<h1>식당 이름</h1>
+			</div><!-- /header -->
+			<div data-role="content" id="thething">
+
+				<a data-role="button">메뉴 보기</a>
+				<a data-role="button">가는 법</a>
+
+			</div><!-- /content -->
+
+			<div data-role="footer">
+				<h4>이 페이지의 푸터 부분입니다.</h4>
+			</div><!-- /footer -->
+		</div><!-- /page -->
+
+	</body>
+</html>
