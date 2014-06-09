@@ -84,47 +84,39 @@ $(document).ready(function() {
 		}
 		// 뒤로가기를 눌렀다가 다시 오는 경우를 대비해서.
 		$("#menuandmap > .selected").remove();
-		
+
 		$("#menuandmap").prepend("<h1 class='selected' style='text-align:center'>" + restaurant[i].name + "</h1>");
 	});
 
 	$("#menubutton").click(function() {
 		var i;
-		for (i = 0; i < 13; i++) {
+		for ( i = 0; i < 13; i++) {
 			if (restaurant[i].name == $(".selected").html()) {
 
 				// 뒤로가기를 눌렀다가 다시 오는 경우를 대비해서.
 				$("#menuheader > .selected").remove();
 				$("#menuboard > .selected").remove();
-				
+
 				$("#menuheader").append("<h1 class='selected ui-title' style='text-align:center'>" + restaurant[i].name + "</h1>");
 				if (!restaurant[i].isCafet) {
 					$("#menuboard").append("<p class='selected ui-title' style='text-align:center'>" + "학식이 아닌 경우에는 메뉴보기를 지원하지 않습니다." + "</p>");
-				}
-				else {
+				} else {
 					var date = new Date();
 					// 해당 학식에 맞는 xml주소 저장. Date, Day함수들을 사용한다.
 					// 그리고 xml파일의 주소는 항상 월요일 기준이므로 date.getDate() - (date.getDay() - 1)%7를 쓴다.
-					
+
 					var monday = AddFrontZero(date.getFullYear(), 4) + "-" + AddFrontZero(date.getMonth() + 1, 2) + "-" + AddFrontZero(date.getDate() - (date.getDay() - 1) % 7, 2);
 					var today = AddFrontZero(date.getFullYear(), 4) + "-" + AddFrontZero(date.getMonth() + 1, 2) + "-" + AddFrontZero(date.getDate(), 2);
 					var url = "http://www.hanyang.ac.kr/upmu/sikdan/xml/rest";
 
 					if (i < 4) {
-						alert(i);
 						url = url + "010" + (i + 1) + "_" + monday + ".xml";
-					}
-					else if (i == 4) {
-						alert(i);
+					} else if (i == 4) {
 						url = url + "0106_" + monday + ".xml";
-					}
-					else if (i == 5) {
-						alert(i);
+					} else if (i == 5) {
 						url = url + "0108_" + monday + ".xml";
 					}
-					
-					alert(url);
-					
+
 					urlYQL = "http://query.yahooapis.com/v1/public/yql?q=select%20*%20from%20xml%20where%20url%3D'" + encodeURIComponent(url) + "'&diagnostics=false";
 
 					$.ajax({
@@ -134,9 +126,9 @@ $(document).ready(function() {
 						success : function(data, textStatus) {
 							$("#menuboard > .selected").remove();
 							$("menuInfo", data).each(function() {
-								if($("date", this).text() == today) {
+								if ($("date", this).text() == today) {
 									name = $("menu_name", this).text();
-									price = $("menu_price", this).text();	
+									price = $("menu_price", this).text();
 									$("#menuboard").append("<tr class='selected'>" + "<td>" + name + "</td>" + "<td>" + price + "</td>" + "</tr>");
 								}
 							});
@@ -154,22 +146,12 @@ $(document).ready(function() {
 			if (restaurant[i].name == $(".selected").html()) {
 				x = restaurant[i].x;
 				y = restaurant[i].y;
+				break;
 			}
 		}
-
-		var oPoint = new nhn.api.map.LatLng(y, x);
-		nhn.api.map.setDefaultPoint('TM128');
-		oMap = new nhn.api.map.Map('map', {
-			point : oPoint,
-			zoom : 10,
-			enableWheelZoom : true,
-			enableDragPan : true,
-			enableDblClickZoom : false,
-			mapMode : 0,
-			activateTrafficMap : false,
-			activateBicycleMap : false,
-			minMaxLevel : [1, 14],
-			size : new nhn.api.map.Size(500, 400)
+		map = new daum.maps.Map(document.getElementById("map"), {
+			center : new daum.maps.LatLng(37.555891179826986, 127.0494683876335),
+			level : 3	// 줌 레벨.
 		});
 
 	});

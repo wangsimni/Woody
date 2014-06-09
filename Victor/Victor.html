@@ -1,13 +1,23 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html>
 	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-		<title>Victor Project - What to eat for lunch?</title>
-		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.css" />
-		<script src="http://code.jquery.com/jquery-1.9.1.min.js"></script>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Woody Project - What to eat for lunch?</title>
+		<link rel="stylesheet" href="themes/Woody.min.css" />
+		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
+		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css" />
+		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 		<script type="text/javascript" src="restaurant.js"></script>
-		<script type="text/javascript" src="Victor.js"></script>  
+		<script type="text/javascript" src="Victor.js"></script>
+		<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=e928826b424073583285c73f3703a7378572103a" charset="utf-8"></script>
+		<style type="text/css">
+			body {
+				font-family: 'Malgun Gothic';
+			}
+		</style>
+	</head>
 	</head>
 	<body>
 		<!-- 홈 페이지 -->
@@ -91,8 +101,7 @@
 				<a data-rel="back">뒤로</a>
 				<h1>가는 길</h1>
 			</div><!-- /header -->
-			<div data-role="content" id="map" style="border:1px solid #000;">
-			</div><!-- /content -->
+			<iframe data-role="content" id="map"></iframe><!-- /content -->
 
 			<div data-role="footer">
 				<h4>이 페이지의 푸터 부분입니다.</h4>
