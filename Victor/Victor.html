@@ -23,15 +23,20 @@
 		<!-- 홈 페이지 -->
 		<div data-role="page" id="home">
 			<div data-role="header">
-				<h1>오늘은 뭐 먹을까?</h1>
+				<h1>뭘 고민한양</h1>
 			</div><!-- /header -->
 			<div data-role="content">
-
-				학식은
-				<select name="flip-1" id="flip-1" data-role="slider">
-					<option value="off">제외</option>
-					<option value="on">추가</option>
-				</select>
+				<div data-role="fieldcontain">
+					<fieldset data-role="controlgroup" data-type="horizontal">
+						<legend>
+							학식은 :
+						</legend>
+						<input type="radio" name="radio-view" id="radio-view-a" value="yes"/>
+						<label for="radio-view-a">좋아요</label>
+						<input type="radio" name="radio-view" id="radio-view-b" value="no"/>
+						<label for="radio-view-b">안먹어</label>
+					</fieldset>
+				</div>
 				<p>
 					결정을 했다면 버튼을 눌러주세요
 				</p>
@@ -51,15 +56,9 @@
 				<h1>결과</h1>
 			</div><!-- /header -->
 			<div data-role="content" id="menuandmap">
-
 				<a href="#menupage" data-role="button" id="menubutton">메뉴 보기</a>
 				<a href="#mappage" data-role="button" id="mapbutton">가는 법</a>
-
 			</div><!-- /content -->
-
-			<div data-role="footer">
-				<h4>이 페이지의 푸터 부분입니다.</h4>
-			</div><!-- /footer -->
 		</div><!-- 결정 페이지 끝 -->
 
 		<!-- 로딩 페이지 -->
@@ -89,10 +88,6 @@
 					<tbody id="menuboard"></tbody>
 				</table>
 			</div><!-- /content -->
-
-			<div data-role="footer">
-				<h4>이 페이지의 푸터 부분입니다.</h4>
-			</div><!-- /footer -->
 		</div><!-- 메뉴 페이지 끝 -->
 
 		<!-- 지도 페이지 -->
@@ -101,11 +96,6 @@
 				<a data-rel="back">뒤로</a>
 				<h1>가는 길</h1>
 			</div><!-- /header -->
-			<iframe data-role="content" id="map"></iframe><!-- /content -->
-
-			<div data-role="footer">
-				<h4>이 페이지의 푸터 부분입니다.</h4>
-			</div><!-- /footer -->
 		</div><!-- 지도 페이지 끝 -->
 	</body>
 </html>

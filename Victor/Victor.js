@@ -13,7 +13,8 @@ function AddFrontZero(inValue, digits) {
 $(document).ready(function() {
 	$("#selectionbutton").click(function() {
 		var i;
-		if ($("#flip-1").val() == "on") {// 학식 추가
+
+		if ($("#radio-view-a").is(":checked")) {// 학식 추가
 			var num = Math.floor(Math.random() * 145) + 1;
 			// 1 ~ 145 까지 숫자 하나 생성.
 			// 대부분 동일한 확률이지만 와와와 알촌은 약간 높다. 하하하
@@ -56,7 +57,7 @@ $(document).ready(function() {
 			else if (126 <= num && num <= 145)
 				i = 6;
 			//알촌
-		} else if ($("#flip-1").val() == "off") {// 학식 제외
+		} else {// 학식 제외
 			var num = Math.floor(Math.random() * 85) + 1;
 			// 1 ~ 85 까지 숫자 하나 생성.
 			//역시 와와와 알촌은 살짝 높다.
