@@ -4,19 +4,16 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Woody Project - What to eat for lunch?</title>
-		<link rel="stylesheet" href="themes/Woody.min.css" />
+		<link rel="stylesheet" href="themes/Woody_simple.min.css" />
 		<link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />
 		<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.2/jquery.mobile.structure-1.4.2.min.css" />
 		<script src="http://code.jquery.com/jquery-1.10.2.min.js"></script>
 		<script src="http://code.jquery.com/mobile/1.4.2/jquery.mobile-1.4.2.min.js"></script>
 		<script type="text/javascript" src="restaurant.js"></script>
 		<script type="text/javascript" src="Victor.js"></script>
+		<script type="text/javascript" src="GeoTrans.js"></script>
 		<script type="text/javascript" src="http://apis.daum.net/maps/maps3.js?apikey=e928826b424073583285c73f3703a7378572103a" charset="utf-8"></script>
-		<style type="text/css">
-			body {
-				font-family: 'Malgun Gothic';
-			}
-		</style>
+		<script src="http://maps.googleapis.com/maps/api/js?sensor=true"></script>
 	</head>
 	</head>
 	<body>
@@ -26,6 +23,9 @@
 				<h1>뭘 고민한양</h1>
 			</div><!-- /header -->
 			<div data-role="content">
+				<div>
+				학식을 추가할지 말지 결정을 한 뒤 버튼을 눌러주세요. 알아서 해결해드립니다.
+				</div>
 				<div data-role="fieldcontain">
 					<fieldset data-role="controlgroup" data-type="horizontal">
 						<legend>
@@ -40,19 +40,19 @@
 				<p>
 					결정을 했다면 버튼을 눌러주세요
 				</p>
-				<a href="#secondpage" data-role="button" id="selectionbutton">결정!</a>
+				<a href="#loadingpage" data-role="button" id="selectionbutton">결정!</a>
 
 			</div><!-- /content -->
 
 			<div data-role="footer">
-				<h4>이 페이지의 푸터 부분입니다.</h4>
+				<a href="#info" class="ui-btn ui-shadow ui-corner-all ui-icon-info ui-btn-icon-notext"></a>
 			</div><!-- /footer -->
 		</div><!-- 홈페이지 끝 -->
 
 		<!-- 결정 페이지 -->
 		<div data-role="page" id="secondpage">
 			<div data-role="header">
-				<a data-rel="back">뒤로</a>
+				<a href="#home" data-role="button" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext"></a>
 				<h1>결과</h1>
 			</div><!-- /header -->
 			<div data-role="content" id="menuandmap">
@@ -62,20 +62,22 @@
 		</div><!-- 결정 페이지 끝 -->
 
 		<!-- 로딩 페이지 -->
-		<!--
-		<div data-role="page" id="loading page">
-		<meta http-equiv="REFRESH" content="3; url=#secondpage">
+
+		<div data-role="page" id="loadingpage">
+			<div data-role="header">
+				결정 중......
+			</div>
 		<div data-role="content" align="center">
 		<p> 잠시만 기다려 주세요</p>
 		<img src="ajax-loader.gif">
 		</div>
-		</div> -->
+		</div> 
 		<!-- 로딩 페이지 끝 -->
 
 		<!-- 메뉴 페이지 -->
 		<div data-role="page" id="menupage">
 			<div data-role="header" id="menuheader">
-				<a data-rel="back">뒤로</a>
+				<a data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext"></a>
 			</div><!-- /header -->
 			<div data-role="content">
 				<table data-role="table" data-mode="reflow">
@@ -93,9 +95,27 @@
 		<!-- 지도 페이지 -->
 		<div data-role="page" id="mappage">
 			<div data-role="header">
-				<a data-rel="back">뒤로</a>
-				<h1>가는 길</h1>
+				<a data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext"></a>
+				<h1>지도</h1>
 			</div><!-- /header -->
+			<div id="map" style="position:absolute; width:100%; height:100%">지도</div>
 		</div><!-- 지도 페이지 끝 -->
+		
+		<!-- info 페이지 -->
+		<div data-role="page" id="info">
+			<div data-role="header">
+				<a data-rel="back" class="ui-btn ui-shadow ui-corner-all ui-icon-arrow-l ui-btn-icon-notext"></a>
+				<h1>뭘 고민한양</h1>
+			</div><!-- /header -->
+			<div data-role="content">
+				<div>
+				뭘 고민한양은 어떤 음식점에 갈 지 고민할 때 사용하면 좋은 어플입니다.<br>
+				무엇을 먹을지 고민할 때 사용해 보세요. 아래 음식점중 하나를 내부 알고리즘에 따라 선택합니다 :
+				<p>한양플라자 3층, 중식당, 생과대 7층, 학생회관 3층, 신소재 지하, 행원파크, 알촌, 와와, 호코리, 홍콩반점, 옵션, 일락, 도스마스</p>
+				<br>
+				소스 코드가 궁금하면 <a href="https://github.com/wangsimni/Woody">여기</a>를 눌러주세요.
+				</div>
+			</div>
+		</div><!-- info 페이지 끝 -->
 	</body>
 </html>
